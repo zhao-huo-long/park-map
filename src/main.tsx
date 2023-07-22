@@ -1,9 +1,9 @@
 import { render } from 'preact'
 import { App } from './app.tsx'
 import './index.css'
-// import VConsole from 'vconsole';
+import VConsole from 'vconsole';
 
-// const vConsole = new VConsole();
+const vConsole = new VConsole();
 // or init with options
 // const vConsole = new VConsole({ theme: 'dark' });
 

@@ -15,10 +15,7 @@ interface ImageConfig {
   el?: HTMLImageElement
 }
 
-export async function composeImg(imgSrc: (string | ImageConfig)[], option?: {
-  width: number,
-  height: number
-}) {
+export async function composeImg(imgSrc: (string | ImageConfig)[]) {
   const canvasEle = document.createElement('canvas',);
   const canvas = canvasEle.getContext('2d');
   const imgsConfig = imgSrc.map(i => {

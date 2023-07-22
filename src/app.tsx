@@ -1,6 +1,7 @@
+// @ts-nocheck
 import { useEffect, useState } from 'preact/hooks'
 import mapSrc from './assets/map-min.jpg'
-import lineSrc from './assets/2.png'
+// import lineSrc from './assets/2.png'
 import './app.css'
 import request from './request'
 import { Switch, Popup, Button, Space } from 'antd-mobile'
@@ -32,43 +33,43 @@ export function App() {
         setPoints(pointsList)
       }
     })
+    window.onresize = () => {
+      resize()
+    }
   }, [])
+  const resize = () => {
+    const imgEl = document.querySelector('#map-img') as HTMLImageElement
+    setRatio(imgEl.width / 5906)
+  }
   return (
     <div class='root' style={{ width: '100%' }}>
-      <div class='map-box' onClick={() => console.log(1111)}>
-        {/* {
-          !!map && <img id={'map-img'} onLoad={() => {
-            const imgEl = document.querySelector('#map-img') as HTMLImageElement
-            setRatio(imgEl.width / imgEl.naturalWidth)
-          }} src={map} style={{ width: '100%' }} useMap="#hot-map" />
-        } */}
+      <div class='map-box'>
         {/* <img class='map-layout' src={mapSrc} style={{ width: '100%' }} useMap="#hot-map"></img> */}
-        <img class='map-layout' id={'map-img'} onLoad={() => {
-          const imgEl = document.querySelector('#map-img') as HTMLImageElement
-          setRatio(imgEl.width / imgEl.naturalWidth)
-        }} src={mapSrc} style={{ width: '100%' }} useMap="#hot-map"></img>
-        <map id="hot-map" name="hot-map">
+        <img class='map-layout' onClick={resize} id={'map-img'} onLoad={resize} src={mapSrc} style={{ width: '100%' }} useMap="#hot-map"></img>
+        {!!points.length && <map id="hot-map" name="hot-map">
           {
             points.map(i => {
-              return <area key={i.id} shape="circle" coords={`${i.x * ratio},${i.y * ratio},${25 * ratio}`} onClick={() => {
+              return <area key={i.id}  shape="circle" coords={`${(i.x) * ratio},${(i.y) * ratio},${150 * ratio}`} onClick={() => {
+                console.log('click')
                 setPointsMsg({ ...i })
                 setVis(true)
               }} />
             })
           }
         </map>
+        }
       </div>
       <div>
-        {/* <div class="sw"> */}
-        {/* <Switch 
+        <div class="sw">
+          <Switch
             style={{
               '--checked-color': '#00b578',
               '--height': '20px',
               '--width': '33px',
             }}
           />
-          智能导游 */}
-        {/* </div> */}
+          智能导游
+        </div>
         <div class="handler">
           <UserOutline onClick={() => {
             wx.miniProgram.navigateTo({ url: '/pages/me/index' })
