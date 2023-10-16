@@ -38,16 +38,35 @@ map * {
 }
 
 .title {
-  font-size: 18px;
-  padding: 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .msg {
-  height: 30vh;
+  padding: 10px;
+  width: 100%;
+}
+
+.content{
+  display: flex;
+  margin: 10px auto;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.intro{
+  margin-left: 12px;
+  flex: 2;
 }
 
 .handler {
   position: absolute;
   right: 0;
   top: 40%;
+}
+
+.side {
+  position: fixed;
+  right: 0;
+  top: 30vh;
+  font-size: 20px;
 }

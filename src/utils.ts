@@ -40,3 +40,13 @@ export async function composeImg(imgSrc: (string | ImageConfig)[]) {
     return canvasEle.toDataURL('image/jpeg', 0.1)
   }
 }
+
+export function createTransImg(w: number,h: number){
+  const canvasEle = document.createElement('canvas',);
+  const canvas = canvasEle.getContext('2d')!;
+  canvasEle.height = h
+  canvasEle.width = w
+  canvas.fillStyle = "rgba(0, 0, 0, 0)"
+  canvas.fillRect(0, 0, w, h);
+  return canvasEle.toDataURL('image/png', 0.1)
+}
